@@ -1,14 +1,19 @@
 import { FC, useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
 import YAML from "json-to-pretty-yaml";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import Button from "@mui/material/Button";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import Container from "@mui/material/Container";
+import {
+  ButtonGroup,
+  Button,
+  InputLabel,
+  MenuItem,
+  Select,
+  Container,
+  styled,
+  IconButton,
+} from "@mui/material";
+import DownloadIcon from "@mui/icons-material/Download";
+
 import NavBar from "./NavBar";
-import { styled } from "@mui/material";
 
 const CustomizedEditor = styled(Editor)(() => ({
   height: "700px",
@@ -132,6 +137,21 @@ const Prettier: FC = () => {
     }
   };
 
+  const formatToCSV = () => {
+    try {
+      setCurrentLanguage("csv");
+      const obj = JSON.parse(value);
+      const keys = Object.keys(obj);
+      const values = Object.values(obj);
+      let formattedValue = keys.join(",") + "\n";
+      formattedValue += values.join(",");
+      setFormattedValue(formattedValue);
+    } catch (error: SyntaxError | any) {
+      setHasError(true);
+      setFormattedValue(error.message);
+    }
+  };
+
   const format = () => {
     try {
       setCurrentLanguage("json");
@@ -173,6 +193,26 @@ const Prettier: FC = () => {
       setHasError(true);
       setFormattedValue(error.message);
     }
+  };
+
+  const downloadAsFile = () => {
+    const element = document.createElement("a");
+    const file = new Blob([formattedValue], {
+      type: "text/plain;charset=utf-8",
+    });
+    element.href = URL.createObjectURL(file);
+    const format = {
+      json: "json",
+      yaml: "yaml",
+      php: "php",
+      csv: "csv",
+      typescript: "ts",
+    };
+    element.download = `formatted.${
+      format[currentLanguage as keyof typeof format]
+    }`;
+    document.body.appendChild(element);
+    element.click();
   };
 
   return (
@@ -218,6 +258,7 @@ const Prettier: FC = () => {
           <Button onClick={formatToYAML}>YAML</Button>
           <Button onClick={generateType}>Typescript</Button>
           <Button onClick={minify}>Minify</Button>
+          <Button onClick={formatToCSV}>CSV</Button>
         </ButtonGroup>
       </div>
       <div>
@@ -294,6 +335,19 @@ const Prettier: FC = () => {
             >
               Copy
             </Button>
+
+            <IconButton
+              style={{
+                position: "absolute",
+                top: 0,
+                right: 0,
+                zIndex: 100,
+                transform: "translateY(-100%)",
+              }}
+              onClick={downloadAsFile}
+            >
+              <DownloadIcon />
+            </IconButton>
           </div>
         </Container>
       </Container>

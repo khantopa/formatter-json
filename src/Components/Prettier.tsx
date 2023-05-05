@@ -4,16 +4,15 @@ import YAML from "json-to-pretty-yaml";
 import {
   ButtonGroup,
   Button,
-  InputLabel,
   MenuItem,
   Select,
   Container,
   styled,
-  IconButton,
 } from "@mui/material";
 import DownloadIcon from "@mui/icons-material/Download";
 
 import NavBar from "./NavBar";
+import Content from "./Content";
 
 const fileExtension = {
   json: "json",
@@ -195,7 +194,7 @@ const Prettier: FC = () => {
         .replace(/{/g, "[")
         .replace(/}/g, "]")
         .replace(/:/g, " =>");
-      formattedValue = `<?php \n $arrayVar = ${formattedValue}}`;
+      formattedValue = `<?php \n $arrayVar = ${formattedValue}`;
       setFormattedValue(formattedValue);
     } catch (error: SyntaxError | any) {
       setHasError(true);
@@ -229,7 +228,6 @@ const Prettier: FC = () => {
           padding: 10,
         }}
       >
-        <InputLabel id="indent">Indent:</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -238,9 +236,9 @@ const Prettier: FC = () => {
           style={{ height: 36, marginLeft: 8 }}
           onChange={(e) => setIndent(Number(e.target.value))}
         >
-          <MenuItem value={2}>2</MenuItem>
-          <MenuItem value={3}>3</MenuItem>
-          <MenuItem value={5}>4</MenuItem>
+          <MenuItem value={2}>2 tab space </MenuItem>
+          <MenuItem value={3}>3 tab space</MenuItem>
+          <MenuItem value={5}>4 tab space</MenuItem>
         </Select>
       </div>
       <div
@@ -338,20 +336,24 @@ const Prettier: FC = () => {
               Copy
             </Button>
 
-            <IconButton
+            <Button
               style={{
                 position: "absolute",
                 top: 0,
                 right: 0,
                 zIndex: 100,
                 transform: "translateY(-100%)",
+                textTransform: "lowercase",
               }}
               onClick={downloadAsFile}
             >
-              <DownloadIcon />
-            </IconButton>
+              <DownloadIcon />.
+              {fileExtension[currentLanguage as keyof typeof fileExtension]}
+            </Button>
           </div>
         </Container>
+        <div className="ad-before-content"></div>
+        <Content />
       </Container>
 
       <div id="bottom-ad"></div>

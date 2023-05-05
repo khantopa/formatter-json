@@ -1,4 +1,4 @@
-import Prettier from "./Prettier";
+import Prettier from "./Components/Prettier";
 import "./App.css";
 
 function App() {

@@ -1,4 +1,4 @@
-import { Container, ListItemText, Typography } from "@mui/material";
+import { Container, Link, ListItemText, Typography } from "@mui/material";
 
 const jsonData = { name: "John Doe", age: 30 };
 
@@ -15,8 +15,12 @@ function Content() {
         Format and Convert JSON Online
       </Typography>
       <Typography>
-        Use formatterjson.com to easily format and convert JSON data to various
-        formats. Our tool supports the following features:
+        Use{" "}
+        <Link href="https://formatterjson.com" hrefLang="english">
+          formatterjson.com
+        </Link>{" "}
+        to easily format and convert JSON data to various formats. Our tool
+        supports the following features:
       </Typography>
       <ul>
         <ListItemText>JSON to TypeScript interface conversion</ListItemText>

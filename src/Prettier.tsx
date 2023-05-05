@@ -15,7 +15,7 @@ import DownloadIcon from "@mui/icons-material/Download";
 
 import NavBar from "./NavBar";
 
-const format = {
+const fileExtension = {
   json: "json",
   yaml: "yaml",
   php: "php",
@@ -211,7 +211,7 @@ const Prettier: FC = () => {
     element.href = URL.createObjectURL(file);
 
     element.download = `formatted.${
-      format[currentLanguage as keyof typeof format]
+      fileExtension[currentLanguage as keyof typeof fileExtension]
     }`;
     document.body.appendChild(element);
     element.click();

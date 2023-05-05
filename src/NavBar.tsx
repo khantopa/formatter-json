@@ -21,10 +21,24 @@ function NavBar() {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Formatter JSON
         </Typography>
-        <Button color="inherit">Prettier</Button>
-        <Button color="inherit">PHP</Button>
-        <Button color="inherit">YAML</Button>
-        <Button color="inherit">TYPESCRIPT</Button>
+        <Button color="inherit" disabled>
+          Prettier
+        </Button>
+        <Button color="inherit" disabled>
+          PHP
+        </Button>
+        <Button color="inherit" disabled>
+          YAML
+        </Button>
+        <Button color="inherit" disabled>
+          TYPESCRIPT
+        </Button>
+        <Button color="inherit" disabled>
+          Minify
+        </Button>
+        <Button color="inherit" disabled>
+          CSV
+        </Button>
       </Toolbar>
     </AppBar>
   );

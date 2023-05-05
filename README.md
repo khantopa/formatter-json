@@ -1,1 +1,1 @@
-# formatter-json
+# pretty-json

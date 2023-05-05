@@ -1,7 +1,5 @@
 import { Container, Link, ListItemText, Typography } from "@mui/material";
 
-const jsonData = { name: "John Doe", age: 30 };
-
 function Content() {
   return (
     <Container style={{ margin: "40px 0" }}>

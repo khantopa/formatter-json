@@ -121,6 +121,17 @@ const Prettier: FC = () => {
     }
   };
 
+  const minify = () => {
+    try {
+      setCurrentLanguage("json");
+      const obj = JSON.parse(value);
+      setFormattedValue(JSON.stringify(obj));
+    } catch (error: SyntaxError | any) {
+      setHasError(true);
+      setFormattedValue(error.message);
+    }
+  };
+
   const format = () => {
     try {
       setCurrentLanguage("json");
@@ -130,6 +141,10 @@ const Prettier: FC = () => {
       setHasError(true);
       setFormattedValue(error.message);
     }
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(formattedValue);
   };
 
   const formatToYAML = () => {
@@ -182,8 +197,8 @@ const Prettier: FC = () => {
           onChange={(e) => setIndent(Number(e.target.value))}
         >
           <MenuItem value={2}>2</MenuItem>
-          <MenuItem value={4}>4</MenuItem>
-          <MenuItem value={6}>6</MenuItem>
+          <MenuItem value={3}>3</MenuItem>
+          <MenuItem value={5}>4</MenuItem>
         </Select>
       </div>
       <div
@@ -202,6 +217,7 @@ const Prettier: FC = () => {
           <Button onClick={formatToPHP}>PHP</Button>
           <Button onClick={formatToYAML}>YAML</Button>
           <Button onClick={generateType}>Typescript</Button>
+          <Button onClick={minify}>Minify</Button>
         </ButtonGroup>
       </div>
       <div>
@@ -224,11 +240,13 @@ const Prettier: FC = () => {
             options={{
               codeLens: false,
               tabSize: indent,
+              renderLineHighlight: "none",
               // lineDecorationsWidth: "1ch",
               minimap: {
                 enabled: false,
               },
               overviewRulerBorder: false,
+              overviewRulerLanes: 0,
             }}
           />
           <div
@@ -245,7 +263,7 @@ const Prettier: FC = () => {
               value={formattedValue}
               defaultValue={`{\n "name": "John",\n  "age": 30,\n  "city": "New York"\n}`}
               options={{
-                // lineDecorationsWidth: "1ch",
+                renderLineHighlight: "none",
                 readOnly: true,
                 wordWrap: "on",
                 scrollBar: {
@@ -259,12 +277,20 @@ const Prettier: FC = () => {
                 codeLens: false,
                 overviewRulerBorder: false,
                 scrollBeyondLastLine: false,
+                renderLineHighlightOnlyWhenFocus: true,
+                overviewRulerLanes: 0,
               }}
             />
 
             <Button
               variant="outlined"
-              style={{ position: "absolute", top: 0, right: 0 }}
+              style={{
+                position: "absolute",
+                top: 0,
+                right: 0,
+                zIndex: 100,
+              }}
+              onClick={copyToClipboard}
             >
               Copy
             </Button>

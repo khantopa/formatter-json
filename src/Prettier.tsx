@@ -1,9 +1,24 @@
 import { FC, useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
 import YAML from "json-to-pretty-yaml";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import Button from "@mui/material/Button";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import Container from "@mui/material/Container";
+import NavBar from "./NavBar";
+import { styled } from "@mui/material";
+
+const CustomizedEditor = styled(Editor)(() => ({
+  height: "700px",
+  border: "none",
+}));
 
 const Prettier: FC = () => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(
+    '{"name": "John", "age": 30, "city": "New York"}'
+  );
   const [indent, setIndent] = useState(2);
   const [_hasError, setHasError] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState("");
@@ -148,41 +163,115 @@ const Prettier: FC = () => {
   return (
     <div>
       <div id="top-ad"></div>
-      <div style={{ display: "flex" }}>
-        <Editor height="90vh" defaultLanguage="json" onChange={handleChange} />
-
-        <Editor
-          height="90vh"
-          defaultLanguage="typescript"
-          language={currentLanguage}
-          value={formattedValue}
-          defaultValue="// Your pretty types will appear here"
-          options={{
-            readOnly: true,
-          }}
-        />
-      </div>
-
-      <div style={{ display: "flex", textAlign: "center" }}>
-        <label htmlFor="">Indent:</label>
-        <input
-          type="number"
+      <NavBar />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: 10,
+        }}
+      >
+        <InputLabel id="indent">Indent:</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
           value={indent}
+          label="Indent"
+          style={{ height: 36, marginLeft: 8 }}
           onChange={(e) => setIndent(Number(e.target.value))}
-        />
-        <button disabled={!value} onClick={format}>
-          Format
-        </button>
-        <button disabled={!value} onClick={formatToPHP}>
-          Convert to PHP
-        </button>
-        <button disabled={!value} onClick={formatToYAML}>
-          Convert to YAML
-        </button>
-        <button disabled={!value} onClick={generateType}>
-          Generate Types
-        </button>
+        >
+          <MenuItem value={2}>2</MenuItem>
+          <MenuItem value={4}>4</MenuItem>
+          <MenuItem value={6}>6</MenuItem>
+        </Select>
       </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          padding: 10,
+          marginBottom: 20,
+        }}
+      >
+        <ButtonGroup
+          variant="contained"
+          aria-label="outlined primary button group"
+        >
+          <Button onClick={format}>Prettier</Button>
+          <Button onClick={formatToPHP}>PHP</Button>
+          <Button onClick={formatToYAML}>YAML</Button>
+          <Button onClick={generateType}>Typescript</Button>
+        </ButtonGroup>
+      </div>
+      <div>
+        <h1></h1>
+      </div>
+      <Container>
+        <Container
+          style={{
+            display: "flex",
+            border: "1px solid #ccc",
+            padding: 0,
+            borderRadius: 5,
+          }}
+        >
+          <CustomizedEditor
+            height="700px"
+            defaultLanguage="json"
+            defaultValue='{"name": "John", "age": 30, "city": "New York"}'
+            onChange={handleChange}
+            options={{
+              codeLens: false,
+              tabSize: indent,
+              // lineDecorationsWidth: "1ch",
+              minimap: {
+                enabled: false,
+              },
+              overviewRulerBorder: false,
+            }}
+          />
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              borderLeft: "1px solid #ccc",
+            }}
+          >
+            <CustomizedEditor
+              height="700px"
+              defaultLanguage="typescript"
+              language={currentLanguage}
+              value={formattedValue}
+              defaultValue={`{\n "name": "John",\n  "age": 30,\n  "city": "New York"\n}`}
+              options={{
+                // lineDecorationsWidth: "1ch",
+                readOnly: true,
+                wordWrap: "on",
+                scrollBar: {
+                  vertical: "hidden",
+                  horizontal: "hidden",
+                },
+                padding: { top: 8, bottom: 8 },
+                minimap: {
+                  enabled: false,
+                },
+                codeLens: false,
+                overviewRulerBorder: false,
+                scrollBeyondLastLine: false,
+              }}
+            />
+
+            <Button
+              variant="outlined"
+              style={{ position: "absolute", top: 0, right: 0 }}
+            >
+              Copy
+            </Button>
+          </div>
+        </Container>
+      </Container>
+
       <div id="bottom-ad"></div>
     </div>
   );

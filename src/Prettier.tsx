@@ -15,6 +15,14 @@ import DownloadIcon from "@mui/icons-material/Download";
 
 import NavBar from "./NavBar";
 
+const format = {
+  json: "json",
+  yaml: "yaml",
+  php: "php",
+  csv: "csv",
+  typescript: "ts",
+};
+
 const CustomizedEditor = styled(Editor)(() => ({
   height: "700px",
   border: "none",
@@ -201,13 +209,7 @@ const Prettier: FC = () => {
       type: "text/plain;charset=utf-8",
     });
     element.href = URL.createObjectURL(file);
-    const format = {
-      json: "json",
-      yaml: "yaml",
-      php: "php",
-      csv: "csv",
-      typescript: "ts",
-    };
+
     element.download = `formatted.${
       format[currentLanguage as keyof typeof format]
     }`;

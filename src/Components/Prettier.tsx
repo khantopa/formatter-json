@@ -9,6 +9,7 @@ import {
   Container,
   styled,
 } from "@mui/material";
+
 import DownloadIcon from "@mui/icons-material/Download";
 
 import NavBar from "./NavBar";
@@ -25,7 +26,42 @@ const fileExtension = {
 const CustomizedEditor = styled(Editor)(() => ({
   height: "700px",
   border: "none",
+  "@media (max-width: 600px)": {
+    marginBottom: 20,
+    border: "1px solid #ccc",
+  },
 }));
+
+const EditorContainer = styled(Container)(() => ({
+  display: "flex",
+  border: "1px solid #ccc",
+  padding: 0,
+  borderRadius: 5,
+  "@media (max-width: 600px)": {
+    flexDirection: "column",
+    gap: 20,
+    border: "none",
+  },
+}));
+
+const EditorWrapper = styled("div")({
+  position: "relative",
+  width: "100%",
+  "&:last-of-type": {
+    borderLeft: "1px solid #ccc",
+  },
+  "@media (max-width: 600px)": {
+    marginBottom: 20,
+    borderBottom: "1px solid #ccc",
+  },
+});
+
+const StyledButtonGroup = styled(ButtonGroup)({
+  "@media (max-width: 600px)": {
+    flexDirection: "column",
+    width: "100%",
+  },
+});
 
 const Prettier: FC = () => {
   const [value, setValue] = useState(
@@ -249,7 +285,7 @@ const Prettier: FC = () => {
           marginBottom: 20,
         }}
       >
-        <ButtonGroup
+        <StyledButtonGroup
           variant="contained"
           color="warning"
           aria-label="outlined primary button group"
@@ -272,43 +308,34 @@ const Prettier: FC = () => {
           <Button color="warning" onClick={formatToCSV}>
             CSV
           </Button>
-        </ButtonGroup>
+        </StyledButtonGroup>
       </div>
       <div>
         <h1></h1>
       </div>
       <Container>
-        <Container
-          style={{
-            display: "flex",
-            border: "1px solid #ccc",
-            padding: 0,
-            borderRadius: 5,
-          }}
-        >
-          <CustomizedEditor
-            height="700px"
-            defaultLanguage="json"
-            defaultValue='{"name": "John", "age": 30, "city": "New York"}'
-            onChange={handleChange}
-            options={{
-              codeLens: false,
-              tabSize: indent,
-              renderLineHighlight: "none",
-              minimap: {
-                enabled: false,
-              },
-              overviewRulerBorder: false,
-              overviewRulerLanes: 0,
-            }}
-          />
-          <div
-            style={{
-              position: "relative",
-              width: "100%",
-              borderLeft: "1px solid #ccc",
-            }}
-          >
+        <EditorContainer>
+          <EditorWrapper>
+            <CustomizedEditor
+              height="700px"
+              defaultLanguage="json"
+              defaultValue='{"name": "John", "age": 30, "city": "New York"}'
+              onChange={handleChange}
+              options={{
+                codeLens: false,
+                tabSize: indent,
+                renderLineHighlight: "none",
+                minimap: {
+                  enabled: false,
+                },
+                overviewRulerBorder: false,
+                overviewRulerLanes: 0,
+                contextMenu: false,
+              }}
+            />
+          </EditorWrapper>
+
+          <EditorWrapper>
             <CustomizedEditor
               height="700px"
               defaultLanguage="typescript"
@@ -364,8 +391,8 @@ const Prettier: FC = () => {
               <DownloadIcon />.
               {fileExtension[currentLanguage as keyof typeof fileExtension]}
             </Button>
-          </div>
-        </Container>
+          </EditorWrapper>
+        </EditorContainer>
         <div className="ad-before-content"></div>
         <Content />
       </Container>

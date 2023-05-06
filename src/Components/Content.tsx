@@ -5,7 +5,7 @@ function Content() {
     <Container style={{ margin: "40px 0" }}>
       <Typography
         variant="h1"
-        color="#1976d2"
+        color="#e65100"
         fontSize={36}
         fontWeight="500"
         margin="16px 0 8px"
@@ -31,7 +31,7 @@ function Content() {
       <br />
       <Typography
         variant="h2"
-        color="#1976d2"
+        color="#e65100"
         fontSize={24}
         margin="16px 0 8px"
       >
@@ -62,7 +62,7 @@ interface IRoot {
       <br />
       <Typography
         variant="h2"
-        color="#1976d2"
+        color="#e65100"
         fontSize={24}
         margin="16px 0 8px"
       >
@@ -92,7 +92,7 @@ $arrayVar = [
       <br />
       <Typography
         variant="h2"
-        color="#1976d2"
+        color="#e65100"
         fontSize={24}
         margin="16px 0 8px"
       >
@@ -118,7 +118,7 @@ $arrayVar = [
       <br />
       <Typography
         variant="h2"
-        color="#1976d2"
+        color="#e65100"
         fontSize={24}
         margin="16px 0 8px"
       >
@@ -146,7 +146,7 @@ $arrayVar = [
       <br />
       <Typography
         variant="h2"
-        color="#1976d2"
+        color="#e65100"
         fontSize={24}
         margin="16px 0 8px"
       >
@@ -176,7 +176,7 @@ $arrayVar = [
       <br />
       <Typography
         variant="h2"
-        color="#1976d2"
+        color="#e65100"
         fontSize={24}
         margin="16px 0 8px"
       >

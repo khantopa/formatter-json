@@ -233,7 +233,7 @@ const Prettier: FC = () => {
           id="demo-simple-select"
           value={indent}
           label="Indent"
-          style={{ height: 36, marginLeft: 8 }}
+          style={{ height: 36, marginLeft: 8, marginTop: 24 }}
           onChange={(e) => setIndent(Number(e.target.value))}
         >
           <MenuItem value={2}>2 tab space </MenuItem>
@@ -251,14 +251,27 @@ const Prettier: FC = () => {
       >
         <ButtonGroup
           variant="contained"
+          color="warning"
           aria-label="outlined primary button group"
         >
-          <Button onClick={format}>Prettier</Button>
-          <Button onClick={formatToPHP}>PHP</Button>
-          <Button onClick={formatToYAML}>YAML</Button>
-          <Button onClick={generateType}>Typescript</Button>
-          <Button onClick={minify}>Minify</Button>
-          <Button onClick={formatToCSV}>CSV</Button>
+          <Button color="warning" onClick={format}>
+            Prettier
+          </Button>
+          <Button color="warning" onClick={formatToPHP}>
+            PHP
+          </Button>
+          <Button color="warning" onClick={formatToYAML}>
+            YAML
+          </Button>
+          <Button color="warning" onClick={generateType}>
+            Typescript
+          </Button>
+          <Button color="warning" onClick={minify}>
+            Minify
+          </Button>
+          <Button color="warning" onClick={formatToCSV}>
+            CSV
+          </Button>
         </ButtonGroup>
       </div>
       <div>
@@ -282,7 +295,6 @@ const Prettier: FC = () => {
               codeLens: false,
               tabSize: indent,
               renderLineHighlight: "none",
-              // lineDecorationsWidth: "1ch",
               minimap: {
                 enabled: false,
               },
@@ -325,6 +337,7 @@ const Prettier: FC = () => {
 
             <Button
               variant="outlined"
+              color="warning"
               style={{
                 position: "absolute",
                 top: 0,
@@ -337,6 +350,7 @@ const Prettier: FC = () => {
             </Button>
 
             <Button
+              color="warning"
               style={{
                 position: "absolute",
                 top: 0,

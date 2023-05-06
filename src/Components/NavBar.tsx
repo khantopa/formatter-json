@@ -3,11 +3,11 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
+import Logo from "./Logo";
 
 function NavBar() {
   return (
-    <AppBar position="static">
+    <AppBar position="static" color="transparent">
       <Toolbar>
         <IconButton
           size="large"
@@ -16,7 +16,7 @@ function NavBar() {
           aria-label="menu"
           disabled
         >
-          <MenuIcon />
+          <Logo style={{ width: 36, height: 50 }} />
         </IconButton>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Formatter JSON

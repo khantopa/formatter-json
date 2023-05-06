@@ -9,6 +9,7 @@ function App() {
       <NavBar />
       <div className="top-ad"></div>
       <Prettier />
+      <div className="footer-ad"></div>
       <Footer />
     </div>
   );

@@ -12,7 +12,6 @@ import {
 
 import DownloadIcon from "@mui/icons-material/Download";
 
-import NavBar from "./NavBar";
 import Content from "./Content";
 
 const fileExtension = {

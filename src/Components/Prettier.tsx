@@ -34,7 +34,7 @@ const CustomizedEditor = styled(Editor)(() => ({
 const EditorContainer = styled(Container)(() => ({
   display: "flex",
   border: "1px solid #ccc",
-  padding: 0,
+  padding: "0 !important",
   borderRadius: 5,
   "@media (max-width: 600px)": {
     flexDirection: "column",
@@ -46,6 +46,7 @@ const EditorContainer = styled(Container)(() => ({
 const EditorWrapper = styled("div")({
   position: "relative",
   width: "100%",
+  padding: 0,
   "&:last-of-type": {
     borderLeft: "1px solid #ccc",
   },
@@ -250,6 +251,26 @@ const Prettier: FC = () => {
     document.body.appendChild(element);
     element.click();
   };
+
+  useEffect(() => {
+    switch (currentLanguage) {
+      case "yaml":
+        formatToYAML();
+        break;
+      case "php":
+        formatToPHP();
+        break;
+      case "csv":
+        formatToCSV();
+        break;
+      case "typescript":
+        generateType();
+        break;
+      default:
+        format();
+        break;
+    }
+  }, [indent]);
 
   return (
     <div>

@@ -254,8 +254,6 @@ const Prettier: FC = () => {
 
   return (
     <div>
-      <div id="top-ad"></div>
-      <NavBar />
       <div
         style={{
           display: "flex",

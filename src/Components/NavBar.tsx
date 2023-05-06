@@ -7,6 +7,8 @@ import Logo from "./Logo";
 import { ButtonGroup, styled } from "@mui/material";
 
 const StyledNavBar = styled(AppBar)({
+  width: "100%",
+  overflow: "hidden",
   "@media (max-width: 600px)": {
     display: "flex",
     justifyContent: "center",

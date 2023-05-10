@@ -348,6 +348,7 @@ const Prettier: FC = () => {
                 },
                 overviewRulerBorder: false,
                 overviewRulerLanes: 0,
+                // @ts-ignore
                 contextMenu: false,
               }}
             />
@@ -364,6 +365,7 @@ const Prettier: FC = () => {
                 renderLineHighlight: "none",
                 readOnly: true,
                 wordWrap: "on",
+                // @ts-ignore
                 scrollBar: {
                   vertical: "hidden",
                   horizontal: "hidden",

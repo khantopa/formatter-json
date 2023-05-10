@@ -136,10 +136,12 @@ $arrayVar = [
       to
       <pre>
         <code className="language-yaml">
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
           name: "John"
           <br />
           age: 30
           <br />
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
           city: "New York"
         </code>
       </pre>

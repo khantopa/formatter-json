@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   output: "export",
+  experimental: {
+    runtime: "edge",
+  },
+  runtime: "edge",
   eslint: {
     ignoreDuringBuilds: true,
   },

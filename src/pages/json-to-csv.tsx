@@ -39,7 +39,6 @@ export default function JsonToCSV() {
         <Container style={{ marginTop: 40, marginBottom: 40 }}>
           <CSVContent />
         </Container>
-        <CSVContent />
         <div className="footer-ad"></div>
         <Footer />
       </main>

@@ -40,7 +40,6 @@ export default function JsonToTypescript() {
         <Container style={{ marginTop: 40, marginBottom: 40 }}>
           <TypeScriptContent />
         </Container>
-        <TypeScriptContent />
         <div className="footer-ad"></div>
         <Footer />
       </main>

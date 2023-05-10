@@ -40,7 +40,6 @@ export default function JsonToYAML() {
         <Container style={{ marginTop: 40, marginBottom: 40 }}>
           <YAMLContent />
         </Container>
-        <YAMLContent />
         <div className="footer-ad"></div>
         <Footer />
       </main>

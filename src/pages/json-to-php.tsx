@@ -40,7 +40,6 @@ export default function JsonToPHP() {
         <Container style={{ marginTop: 40, marginBottom: 40 }}>
           <PHPContent />
         </Container>
-        <PHPContent />
         <div className="footer-ad"></div>
         <Footer />
       </main>

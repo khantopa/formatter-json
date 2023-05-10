@@ -1,17 +1,18 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
-import Prettier from "../components/Prettier";
-import Footer from "../components/Footer";
-import NavBar from "../components/NavBar";
-import Typography from "@mui/material/Typography";
+import Prettier from "@components/Prettier";
+import Footer from "@components/Footer";
+import NavBar from "@components/NavBar";
+import { Typography } from "@mui/material";
+const inter = Inter({ subsets: ["latin"] });
 
-export default function JsonFormatter() {
+export default function Home() {
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>
-          JSON Formatter - Convert JSON to TypeScript, PHP, YAML, CSV and more |
+          Format JSON - Convert JSON to TypeScript, PHP, YAML, CSV and more |
           formatterjson.com
         </title>
         <meta name="author" content="JsonFormatter" />
@@ -25,20 +26,22 @@ export default function JsonFormatter() {
         />
       </Head>
       <main>
-        <NavBar />
-        <div className="top-ad"></div>
-        <Typography
-          variant="h1"
-          color="#e65100"
-          fontSize={36}
-          fontWeight="500"
-          margin="16px"
-        >
-          JSON Formatter
-        </Typography>
-        <Prettier />
-        <div className="footer-ad"></div>
-        <Footer />
+        <div>
+          <NavBar />
+          <div className="top-ad"></div>
+          <Typography
+            variant="h1"
+            color="#e65100"
+            fontSize={36}
+            fontWeight="500"
+            margin="16px"
+          >
+            JSON Formatter
+          </Typography>
+          <Prettier />
+          <div className="footer-ad"></div>
+          <Footer />
+        </div>
       </main>
     </>
   );

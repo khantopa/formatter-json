@@ -328,9 +328,6 @@ const Prettier: FC<any> = () => {
           </Button>
         </StyledButtonGroup>
       </div>
-      <div>
-        <h1></h1>
-      </div>
       <Container>
         <EditorContainer>
           <EditorWrapper>

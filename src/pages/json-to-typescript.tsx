@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
 import Prettier from "../components/Prettier";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";

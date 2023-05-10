@@ -26,18 +26,23 @@ function NavBar() {
   return (
     <StyledNavBar position="static" color="transparent">
       <Toolbar>
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          disabled
-        >
-          <Logo style={{ width: 36, height: 50 }} />
-        </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Formatter JSON
-        </Typography>
+        <Link href="/">
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+          >
+            <Logo style={{ width: 36, height: 50 }} />
+          </IconButton>
+        </Link>
+
+        <Link href="/">
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Formatter JSON
+          </Typography>
+        </Link>
+
         <StyledButtonGroup variant="text">
           <Link href="/json-formatter">
             <Button color="inherit">Prettier</Button>

@@ -5,7 +5,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  basePath: "/",
 };
 
 module.exports = nextConfig;

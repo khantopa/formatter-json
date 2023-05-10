@@ -11,7 +11,7 @@ export default function JsonMinifier() {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>JSON Minifier Online | formatterjson.com</title>
+        <title>JSON Minify Online | formatterjson.com</title>
         <meta name="author" content="JsonFormatter" />
         <meta
           name="description"
@@ -32,7 +32,7 @@ export default function JsonMinifier() {
           fontWeight="500"
           margin="16px"
         >
-          JSON Minifier Online
+          JSON Minify Online
         </Typography>
         <Prettier />
         <div className="content-ad"></div>

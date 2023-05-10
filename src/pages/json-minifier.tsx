@@ -3,16 +3,15 @@ import Prettier from "@components/Prettier";
 import Footer from "@components/Footer";
 import NavBar from "@components/NavBar";
 import Typography from "@mui/material/Typography";
+import MinifyContent from "@/components/Contents/MinifyContent";
+import { Container } from "@mui/material";
 
 export default function JsonMinifier() {
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-          JSON to YAML - Convert JSON to TypeScript, PHP, YAML, CSV and more |
-          formatterjson.com
-        </title>
+        <title>JSON Minifier Online | formatterjson.com</title>
         <meta name="author" content="JsonFormatter" />
         <meta
           name="description"
@@ -33,9 +32,13 @@ export default function JsonMinifier() {
           fontWeight="500"
           margin="16px"
         >
-          JSON Minifier
+          JSON Minifier Online
         </Typography>
         <Prettier />
+        <div className="content-ad"></div>
+        <Container style={{ marginTop: 40, marginBottom: 40 }}>
+          <MinifyContent />
+        </Container>
         <div className="footer-ad"></div>
         <Footer />
       </main>

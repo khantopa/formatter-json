@@ -4,16 +4,15 @@ import Prettier from "../components/Prettier";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Typography from "@mui/material/Typography";
+import TypeScriptContent from "@/components/Contents/TypescriptContent";
+import { Container } from "@mui/material";
 
 export default function JsonToTypescript() {
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-          JSON to Typescript - Convert JSON to TypeScript, PHP, YAML, CSV and
-          more | formatterjson.com
-        </title>
+        <title>JSON to Typescript Interface Online | formatterjson.com</title>
         <meta name="author" content="JsonFormatter" />
         <meta
           name="description"
@@ -34,9 +33,14 @@ export default function JsonToTypescript() {
           fontWeight="500"
           margin="16px"
         >
-          JSON to Typescript
+          Convert JSON Object to Typescript Interface Online
         </Typography>
         <Prettier />
+        <div className="content-ad"></div>
+        <Container style={{ marginTop: 40, marginBottom: 40 }}>
+          <TypeScriptContent />
+        </Container>
+        <TypeScriptContent />
         <div className="footer-ad"></div>
         <Footer />
       </main>

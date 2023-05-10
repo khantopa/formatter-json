@@ -3,16 +3,15 @@ import Prettier from "@components/Prettier";
 import Footer from "@components/Footer";
 import NavBar from "@components/NavBar";
 import Typography from "@mui/material/Typography";
+import PrettierContent from "@/components/Contents/PrettierContent";
+import { Container } from "@mui/material";
 
 export default function JsonFormatter() {
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-          JSON Formatter - Convert JSON to TypeScript, PHP, YAML, CSV and more |
-          formatterjson.com
-        </title>
+        <title>JSON Prettier and Beautifier Online | formatterjson.com</title>
         <meta name="author" content="JsonFormatter" />
         <meta
           name="description"
@@ -33,9 +32,13 @@ export default function JsonFormatter() {
           fontWeight="500"
           margin="16px"
         >
-          JSON Formatter
+          JSON Prettier and JSON Beautifier Online
         </Typography>
         <Prettier />
+        <div className="content-ad"></div>
+        <Container style={{ marginTop: 40, marginBottom: 40 }}>
+          <PrettierContent />
+        </Container>
         <div className="footer-ad"></div>
         <Footer />
       </main>

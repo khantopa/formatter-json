@@ -1,5 +1,6 @@
 import Head from "next/head";
 
+import Content from "@components/Contents";
 import Prettier from "@components/Prettier";
 import Footer from "@components/Footer";
 import NavBar from "@components/NavBar";
@@ -11,8 +12,8 @@ export default function Home() {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>
-          Format JSON - Convert JSON to TypeScript, PHP, YAML, CSV and more |
-          formatterjson.com
+          Format JSON - Online Converter for JSON to TypeScript, PHP, YAML, CSV
+          and more | formatterjson.com
         </title>
         <meta name="author" content="JsonFormatter" />
         <meta
@@ -35,9 +36,11 @@ export default function Home() {
             fontWeight="500"
             margin="16px"
           >
-            JSON Formatter
+            Online JSON Formatter
           </Typography>
           <Prettier />
+          <div className="ad-before-content"></div>
+          <Content />
           <div className="footer-ad"></div>
           <Footer />
         </div>

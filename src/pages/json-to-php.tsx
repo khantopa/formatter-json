@@ -4,16 +4,15 @@ import Prettier from "../components/Prettier";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Typography from "@mui/material/Typography";
+import PHPContent from "@/components/Contents/PHPContent";
+import { Container } from "@mui/material";
 
 export default function JsonToPHP() {
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-          JSON to PHP - Convert JSON to PHP, YAML, CSV and more |
-          formatterjson.com
-        </title>
+        <title>JSON to PHP Online | formatterjson.com</title>
         <meta name="author" content="JsonFormatter" />
         <meta
           name="description"
@@ -34,9 +33,14 @@ export default function JsonToPHP() {
           fontWeight="500"
           margin="16px"
         >
-          JSON to PHP
+          Convert JSON Object to PHP Array Online
         </Typography>
         <Prettier />
+        <div className="content-ad"></div>
+        <Container style={{ marginTop: 40, marginBottom: 40 }}>
+          <PHPContent />
+        </Container>
+        <PHPContent />
         <div className="footer-ad"></div>
         <Footer />
       </main>

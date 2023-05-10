@@ -12,8 +12,6 @@ import {
 
 import DownloadIcon from "@mui/icons-material/Download";
 
-import Content from "./Content";
-
 const fileExtension = {
   json: "json",
   yaml: "yaml",
@@ -410,8 +408,6 @@ const Prettier: FC<any> = () => {
             </Button>
           </EditorWrapper>
         </EditorContainer>
-        <div className="ad-before-content"></div>
-        <Content />
       </Container>
 
       <div id="bottom-ad"></div>

@@ -63,7 +63,7 @@ const StyledButtonGroup = styled(ButtonGroup)({
   },
 });
 
-const Prettier: FC = () => {
+const Prettier: FC<any> = () => {
   const [value, setValue] = useState(
     '{"name": "John", "age": 30, "city": "New York"}'
   );

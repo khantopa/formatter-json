@@ -49,7 +49,7 @@ function NavBar() {
           <Link href="/json-to-typescript">
             <Button color="inherit">TYPESCRIPT</Button>
           </Link>
-          <Link href="/json-minifier">
+          <Link href="/json-minify">
             <Button color="inherit">Minify</Button>
           </Link>
           <Link href="/json-to-csv">

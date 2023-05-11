@@ -5,6 +5,7 @@ import NavBar from "@components/NavBar";
 import Typography from "@mui/material/Typography";
 import PrettierContent from "@/components/Contents/PrettierContent";
 import { Container } from "@mui/material";
+import PageTitle from "@/components/PageTitle";
 
 export default function JsonFormatter() {
   return (
@@ -25,15 +26,14 @@ export default function JsonFormatter() {
       <main>
         <NavBar />
         <div className="top-ad"></div>
-        <Typography
-          variant="h1"
-          color="#e65100"
-          fontSize={36}
-          fontWeight="500"
-          margin="16px"
-        >
-          JSON Prettier and JSON Beautifier Online
-        </Typography>
+
+        <PageTitle
+          title="JSON Prettier and JSON Beautifier Online"
+          description="Format your JSON data with our online tool. Simply paste your JSON data
+          and our tool will apply indentation, line breaks and formatting to make
+          your JSON code more readable."
+        />
+
         <Prettier />
         <div className="content-ad"></div>
         <Container style={{ marginTop: 40, marginBottom: 40 }}>

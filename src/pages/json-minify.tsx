@@ -3,19 +3,23 @@ import Prettier from "@components/Prettier";
 import Footer from "@components/Footer";
 import NavBar from "@components/NavBar";
 import Typography from "@mui/material/Typography";
-import MinifyContent from "@/components/Contents/MinifyContent";
+import MinifyPageContent from "@/components/Contents/MinifyPageContent";
 import { Container } from "@mui/material";
+import PageTitle from "@/components/PageTitle";
 
 export default function JsonMinifier() {
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>JSON Minify Online | formatterjson.com</title>
+        <title>
+          JSON Minify: Reduce File Size & Optimize Performance |
+          formatterjson.com
+        </title>
         <meta name="author" content="JsonFormatter" />
         <meta
           name="description"
-          content="Online JSON Formatter / Beautifier and JSON Validator will format JSON data, and helps to validate, convert JSON to Typescript, JSON to PHP, JSON to YAML, JSON to CSV."
+          content="Learn how to minify JSON files effortlessly for improved performance and reduced file size. Explore efficient techniques and tools."
         />
         <meta
           name="keywords"
@@ -25,20 +29,15 @@ export default function JsonMinifier() {
       <main>
         <NavBar />
         <div className="top-ad"></div>
-        <Typography
-          variant="h1"
-          color="#e65100"
-          fontSize={36}
-          fontWeight="500"
-          margin="16px"
-        >
-          JSON Minify Online
-        </Typography>
+        <PageTitle
+          title="JSON Minify Online"
+          description="Minify your JSON data with our online tool. Simply paste your JSON
+            data and our tool will remove all unnecessary whitespace and
+            comments to make your JSON code more compact."
+        />
         <Prettier />
         <div className="content-ad"></div>
-        <Container style={{ marginTop: 40, marginBottom: 40 }}>
-          <MinifyContent />
-        </Container>
+        <MinifyPageContent />
         <div className="footer-ad"></div>
         <Footer />
       </main>

@@ -5,6 +5,7 @@ import NavBar from "../components/NavBar";
 import Typography from "@mui/material/Typography";
 import PHPContent from "@/components/Contents/PHPContent";
 import { Container } from "@mui/material";
+import PageTitle from "@/components/PageTitle";
 
 export default function JsonToPHP() {
   return (
@@ -25,15 +26,13 @@ export default function JsonToPHP() {
       <main>
         <NavBar />
         <div className="top-ad"></div>
-        <Typography
-          variant="h1"
-          color="#e65100"
-          fontSize={36}
-          fontWeight="500"
-          margin="16px"
-        >
-          Convert JSON Object to PHP Array Online
-        </Typography>
+
+        <PageTitle
+          title="Convert JSON Object to PHP Array Online"
+          description="Convert your JSON data to PHP arrays with our online tool. Simply paste
+          your JSON data and our tool will generate PHP code for you."
+        />
+
         <Prettier />
         <div className="content-ad"></div>
         <Container style={{ marginTop: 40, marginBottom: 40 }}>

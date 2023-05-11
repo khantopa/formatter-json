@@ -5,6 +5,7 @@ import NavBar from "../components/NavBar";
 import Typography from "@mui/material/Typography";
 import YAMLContent from "@/components/Contents/YAMLContent";
 import { Container } from "@mui/material";
+import PageTitle from "@/components/PageTitle";
 
 export default function JsonToYAML() {
   return (
@@ -25,15 +26,13 @@ export default function JsonToYAML() {
       <main>
         <NavBar />
         <div className="top-ad"></div>
-        <Typography
-          variant="h1"
-          color="#e65100"
-          fontSize={36}
-          fontWeight="500"
-          margin="16px"
-        >
-          Convert JSON Object to YAML Online
-        </Typography>
+
+        <PageTitle
+          title="Convert JSON Object to YAML Online"
+          description="Convert your JSON data to YAML format with our online tool. Simply paste
+          your JSON data and our tool will generate YAML code for you."
+        />
+
         <Prettier />
         <div className="content-ad"></div>
         <Container style={{ marginTop: 40, marginBottom: 40 }}>

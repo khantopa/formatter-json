@@ -5,6 +5,7 @@ import NavBar from "@components/NavBar";
 import Typography from "@mui/material/Typography";
 import CSVContent from "@/components/Contents/CSVContent";
 import { Container } from "@mui/material";
+import PageTitle from "@/components/PageTitle";
 
 export default function JsonToCSV() {
   return (
@@ -25,15 +26,14 @@ export default function JsonToCSV() {
       <main>
         <NavBar />
         <div className="top-ad"></div>
-        <Typography
-          variant="h1"
-          color="#e65100"
-          fontSize={36}
-          fontWeight="500"
-          margin="16px"
-        >
-          Convert JSON Object to CSV Online
-        </Typography>
+
+        <PageTitle
+          title="Convert JSON Object to CSV Online"
+          description="Convert your JSON data to CSV format with our online tool. Simply paste
+          your JSON data and our tool will generate a CSV file for you to
+          download."
+        />
+
         <Prettier />
         <div className="content-ad"></div>
         <Container style={{ marginTop: 40, marginBottom: 40 }}>

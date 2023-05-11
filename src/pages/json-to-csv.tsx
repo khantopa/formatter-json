@@ -2,21 +2,21 @@ import Head from "next/head";
 import Prettier from "@components/Prettier";
 import Footer from "@components/Footer";
 import NavBar from "@components/NavBar";
-import Typography from "@mui/material/Typography";
 import CSVContent from "@/components/Contents/CSVContent";
 import { Container } from "@mui/material";
 import PageTitle from "@/components/PageTitle";
+import CSVPageContent from "@/components/Contents/CSVPageContent";
 
 export default function JsonToCSV() {
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>JSON to CSV Online | formatterjson.com</title>
+        <title>Convert JSON to CSV or Excel Online: Simple and Efficient</title>
         <meta name="author" content="JsonFormatter" />
         <meta
           name="description"
-          content="Online JSON Formatter / Beautifier and JSON Validator will format JSON data, and helps to validate, convert JSON to Typescript, JSON to PHP, JSON to YAML, JSON to CSV."
+          content="Convert JSON to CSV or Excel online with our user-friendly tool. Streamline data transformation and analysis with this quick and efficient solution."
         />
         <meta
           name="keywords"
@@ -36,9 +36,7 @@ export default function JsonToCSV() {
 
         <Prettier />
         <div className="content-ad"></div>
-        <Container style={{ marginTop: 40, marginBottom: 40 }}>
-          <CSVContent />
-        </Container>
+        <CSVPageContent />
         <div className="footer-ad"></div>
         <Footer />
       </main>

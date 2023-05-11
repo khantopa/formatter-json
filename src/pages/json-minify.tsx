@@ -12,10 +12,7 @@ export default function JsonMinifier() {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-          JSON Minify: Reduce File Size & Optimize Performance |
-          formatterjson.com
-        </title>
+        <title>JSON Minify: Reduce File Size & Optimize Performance</title>
         <meta name="author" content="JsonFormatter" />
         <meta
           name="description"

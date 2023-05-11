@@ -11,10 +11,7 @@ export default function JsonFormatter() {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-          Improve Code Readability: JSON Prettier and Beautifier |
-          formatterjson.com
-        </title>
+        <title>Improve Code Readability: JSON Prettier and Beautifier</title>
         <meta name="author" content="JsonFormatter" />
         <meta
           name="description"

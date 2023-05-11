@@ -2,21 +2,23 @@ import Head from "next/head";
 import Prettier from "@components/Prettier";
 import Footer from "@components/Footer";
 import NavBar from "@components/NavBar";
-import Typography from "@mui/material/Typography";
-import PrettierContent from "@/components/Contents/PrettierContent";
-import { Container } from "@mui/material";
+
 import PageTitle from "@/components/PageTitle";
+import PrettierPageContent from "@/components/Contents/PrettierPageContent";
 
 export default function JsonFormatter() {
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>JSON Prettier and Beautifier Online | formatterjson.com</title>
+        <title>
+          Improve Code Readability: JSON Prettier and Beautifier |
+          formatterjson.com
+        </title>
         <meta name="author" content="JsonFormatter" />
         <meta
           name="description"
-          content="Online JSON Formatter / Beautifier and JSON Validator will format JSON data, and helps to validate, convert JSON to Typescript, JSON to PHP, JSON to YAML, JSON to CSV."
+          content="Online JSON beautifier tool to format, pretty print and organize your JSON data. Make it readable and visually appealing effortlessly."
         />
         <meta
           name="keywords"
@@ -36,9 +38,7 @@ export default function JsonFormatter() {
 
         <Prettier />
         <div className="content-ad"></div>
-        <Container style={{ marginTop: 40, marginBottom: 40 }}>
-          <PrettierContent />
-        </Container>
+        <PrettierPageContent />
         <div className="footer-ad"></div>
         <Footer />
       </main>

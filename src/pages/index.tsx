@@ -5,6 +5,7 @@ import Prettier from "@components/Prettier";
 import Footer from "@components/Footer";
 import NavBar from "@components/NavBar";
 import { Typography } from "@mui/material";
+import PageTitle from "@/components/PageTitle";
 
 export default function Home() {
   return (
@@ -29,15 +30,12 @@ export default function Home() {
         <div>
           <NavBar />
           <div className="top-ad"></div>
-          <Typography
-            variant="h1"
-            color="#e65100"
-            fontSize={36}
-            fontWeight="500"
-            margin="16px"
-          >
-            Online JSON Formatter
-          </Typography>
+
+          <PageTitle
+            title="Online JSON Converter and Formatter"
+            description="Simplify your JSON data with our online converter and formatter. With just a few clicks, you can transform your JSON data into a more organized and easy-to-read format."
+          />
+
           <Prettier />
           <div className="ad-before-content"></div>
           <Content />

@@ -2,21 +2,21 @@ import Head from "next/head";
 import Prettier from "../components/Prettier";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
-import Typography from "@mui/material/Typography";
-import TypeScriptContent from "@/components/Contents/TypescriptContent";
-import { Container } from "@mui/material";
 import PageTitle from "@/components/PageTitle";
+import TypescriptPageContent from "@/components/Contents/TypescriptPageContent";
 
 export default function JsonToTypescript() {
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>JSON to Typescript Interface Online | formatterjson.com</title>
+        <title>
+          Online JSON to TypeScript Conversion: Effortless Transformation
+        </title>
         <meta name="author" content="JsonFormatter" />
         <meta
           name="description"
-          content="Online JSON Formatter / Beautifier and JSON Validator will format JSON data, and helps to validate, convert JSON to Typescript, JSON to PHP, JSON to YAML, JSON to CSV."
+          content="Convert JSON to TypeScript online effortlessly. Simplify your development process and seamlessly generate TypeScript interfaces and types from your JSON data."
         />
         <meta
           name="keywords"
@@ -36,9 +36,7 @@ export default function JsonToTypescript() {
 
         <Prettier />
         <div className="content-ad"></div>
-        <Container style={{ marginTop: 40, marginBottom: 40 }}>
-          <TypeScriptContent />
-        </Container>
+        <TypescriptPageContent />
         <div className="footer-ad"></div>
         <Footer />
       </main>

@@ -180,7 +180,7 @@ export default function JsonFormattingExcellence() {
                 <code className="lang-json">
                   {`
 "product_name": "Awesome Widget",
-"product_description": "Discover the extraordinary features of our Awesome Widget, designed to revolutionize your daily tasks."</span>
+"product_description": "Discover the extraordinary features of our Awesome Widget, designed to revolutionize your daily tasks."
 `}
                 </code>
               </pre>

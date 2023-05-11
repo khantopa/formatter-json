@@ -6,17 +6,19 @@ import Typography from "@mui/material/Typography";
 import PHPContent from "@/components/Contents/PHPContent";
 import { Container } from "@mui/material";
 import PageTitle from "@/components/PageTitle";
+import PHPPageContent from "@/components/Contents/PHPPageContent";
 
 export default function JsonToPHP() {
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>JSON to PHP Online | formatterjson.com</title>
+        <title>Convert JSON to PHP Array Format Online</title>
         <meta name="author" content="JsonFormatter" />
         <meta
           name="description"
-          content="Online JSON Formatter / Beautifier and JSON Validator will format JSON data, and helps to validate, convert JSON to PHP, JSON to PHP, JSON to YAML, JSON to CSV."
+          content="Discover a reliable online tool to convert JSON to PHP array effortlessly. Simplify the integration of JSON data into your PHP projects with ease.
+          Content"
         />
         <meta
           name="keywords"
@@ -35,9 +37,7 @@ export default function JsonToPHP() {
 
         <Prettier />
         <div className="content-ad"></div>
-        <Container style={{ marginTop: 40, marginBottom: 40 }}>
-          <PHPContent />
-        </Container>
+        <PHPPageContent />
         <div className="footer-ad"></div>
         <Footer />
       </main>

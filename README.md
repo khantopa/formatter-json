@@ -1,6 +1,6 @@
 # FormatterJSON
 
-[![FormatterJSON](https://your-website-url.com/path/to/your-logo.png)](https://formatterjson.com)
+[![FormatterJSON](public/formatter-json-logo.png)](https://formatterjson.com)
 
 FormatterJSON is a web-based tool that allows you to convert JSON to various formats such as PHP, TypeScript, and YAML. It also provides features to format and minify JSON.
 

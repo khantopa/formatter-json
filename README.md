@@ -26,28 +26,7 @@ You can also use the formatting and minifying options available on the website.
 
 ### Converting JSON to PHP
 
-```php
-<?php
-$json = '{"key": "value"}';
-$data = json_decode($json, true);
-
-// Output:
-// array (
-//   'key' => 'value',
-// )
-
-```
-
 ### Converting JSON to TypeScript
-```typescript
-const json = '{"key": "value"}';
-const data = JSON.parse(json);
-
-// Output:
-interface Root {
-  key: string
-}
-```
 
 ### Converting JSON to YAML
 

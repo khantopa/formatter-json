@@ -24,11 +24,6 @@ export default function Home() {
           name='keywords'
           content='json formatter, formatter json, json validator, online json formatter, json formatter online, format json, json to typescript, json to csv, json to , TypeScript, PHP, YAML, CSV, format, convert, online, tool, minify, beautify'
         />
-        <script
-          async
-          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3118792387110409'
-          crossOrigin='anonymous'
-        ></script>
       </Head>
       <main>
         <div>

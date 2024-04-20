@@ -1,45 +1,50 @@
-import NavBar from "@/components/NavBar";
-import { Box, Container, ListItemText, Typography } from "@mui/material";
-import Head from "next/head";
+import NavBar from '@/components/NavBar';
+import { Box, Container, ListItemText, Typography } from '@mui/material';
+import Head from 'next/head';
 
 export default function JsonFormattingExcellence() {
   return (
     <>
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
         <title>
           Achieving JSON Formatting Excellence: A Comprehensive Guide |
           formatterjson.com
         </title>
         <meta
-          name="description"
-          content="Discover the secrets to achieving JSON formatting excellence with our comprehensive guide. Learn best practices, expert tips, and practical examples to optimize your JSON code and outrank the competition in search engine rankings."
+          name='description'
+          content='Discover the secrets to achieving JSON formatting excellence with our comprehensive guide. Learn best practices, expert tips, and practical examples to optimize your JSON code and outrank the competition in search engine rankings.'
         />
         <meta
-          name="keywords"
-          content="JSON formatting, JSON syntax, JSON best practices, JSON optimization, JSON code quality, JSON data structure, JSON formatting tips, JSON formatting examples, search engine optimization, outrank competition, JSON formatting excellence"
+          name='keywords'
+          content='JSON formatting, JSON syntax, JSON best practices, JSON optimization, JSON code quality, JSON data structure, JSON formatting tips, JSON formatting examples, search engine optimization, outrank competition, JSON formatting excellence'
         />
+        <script
+          async
+          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3118792387110409'
+          crossOrigin='anonymous'
+        ></script>
       </Head>
       <main>
         <NavBar />
         <Container style={{ marginTop: 40 }}>
           <Typography
-            variant="h1"
-            color={"#e65100"}
+            variant='h1'
+            color={'#e65100'}
             fontSize={50}
-            margin="10px 0 20px"
+            margin='10px 0 20px'
             fontWeight={700}
-            id="achieving-json-formatting-excellence-unraveling-the-secrets"
+            id='achieving-json-formatting-excellence-unraveling-the-secrets'
           >
             Achieving JSON Formatting Excellence: Unraveling the Secrets
           </Typography>
           <Typography
-            variant="h2"
-            margin="10px 0"
-            fontWeight="500"
+            variant='h2'
+            margin='10px 0'
+            fontWeight='500'
             fontSize={30}
-            color={"#e65100"}
-            id="introduction"
+            color={'#e65100'}
+            id='introduction'
           >
             Introduction
           </Typography>
@@ -54,12 +59,12 @@ export default function JsonFormattingExcellence() {
             formatting and surpass the competition in search engine rankings.
           </Typography>
           <Typography
-            variant="h2"
-            margin="10px 0"
-            fontWeight="500"
+            variant='h2'
+            margin='10px 0'
+            fontWeight='500'
             fontSize={30}
-            color={"#e65100"}
-            id="understanding-json"
+            color={'#e65100'}
+            id='understanding-json'
           >
             Understanding JSON
           </Typography>
@@ -72,12 +77,12 @@ export default function JsonFormattingExcellence() {
             parsing across different programming languages.
           </Typography>
           <Typography
-            variant="h3"
-            margin="10px 0"
-            fontWeight="400"
+            variant='h3'
+            margin='10px 0'
+            fontWeight='400'
             fontSize={22}
-            color={"#e65100"}
-            id="json-syntax"
+            color={'#e65100'}
+            id='json-syntax'
           >
             JSON Syntax
           </Typography>
@@ -90,7 +95,7 @@ export default function JsonFormattingExcellence() {
             objects. Here&#39;s an example of a basic JSON structure:
           </Typography>
           <pre>
-            <code className="lang-json">
+            <code className='lang-json'>
               {`
   "name": "John Doe",
   "age": 30,
@@ -101,12 +106,12 @@ export default function JsonFormattingExcellence() {
             </code>
           </pre>
           <Typography
-            variant="h3"
-            margin="10px 0"
-            fontWeight="400"
+            variant='h3'
+            margin='10px 0'
+            fontWeight='400'
             fontSize={22}
-            color={"#e65100"}
-            id="validating-json"
+            color={'#e65100'}
+            id='validating-json'
           >
             Validating JSON
           </Typography>
@@ -114,17 +119,17 @@ export default function JsonFormattingExcellence() {
             Validating your JSON data is crucial to ensure its integrity and
             compliance with the JSON standard. By adhering to proper formatting
             guidelines, you can avoid errors and guarantee seamless data
-            transmission. One popular tool for validating JSON is{" "}
-            <a href="https://formatterjson.com">jsonlint.com</a>, where you can
+            transmission. One popular tool for validating JSON is{' '}
+            <a href='https://formatterjson.com'>jsonlint.com</a>, where you can
             paste your JSON code and receive instant feedback on its validity.
           </Typography>
           <Typography
-            variant="h2"
-            margin="10px 0"
-            fontWeight="500"
+            variant='h2'
+            margin='10px 0'
+            fontWeight='500'
             fontSize={30}
-            color={"#e65100"}
-            id="best-practices-for-json-formatting"
+            color={'#e65100'}
+            id='best-practices-for-json-formatting'
           >
             Best Practices for JSON Formatting
           </Typography>
@@ -134,12 +139,12 @@ export default function JsonFormattingExcellence() {
             practices.
           </Typography>
           <Typography
-            variant="h3"
-            margin="10px 0"
-            fontWeight="400"
+            variant='h3'
+            margin='10px 0'
+            fontWeight='400'
             fontSize={22}
-            color={"#e65100"}
-            id="1-consistent-formatting"
+            color={'#e65100'}
+            id='1-consistent-formatting'
           >
             1. Consistent Formatting
           </Typography>
@@ -163,12 +168,12 @@ export default function JsonFormattingExcellence() {
               Align colons (<code>:</code>) vertically for a cleaner and more
               organized appearance.
               <Typography
-                variant="h3"
-                margin="10px 0"
-                fontWeight="400"
+                variant='h3'
+                margin='10px 0'
+                fontWeight='400'
                 fontSize={22}
-                color={"#e65100"}
-                id="2-descriptive-key-names"
+                color={'#e65100'}
+                id='2-descriptive-key-names'
               >
                 2. Descriptive Key Names
               </Typography>
@@ -177,7 +182,7 @@ export default function JsonFormattingExcellence() {
               names that accurately represent the data they hold, using relevant
               keywords when appropriate. For example:
               <pre>
-                <code className="lang-json">
+                <code className='lang-json'>
                   {`
 "product_name": "Awesome Widget",
 "product_description": "Discover the extraordinary features of our Awesome Widget, designed to revolutionize your daily tasks."
@@ -185,11 +190,11 @@ export default function JsonFormattingExcellence() {
                 </code>
               </pre>
               <Typography
-                variant="h3"
-                margin="10px 0"
-                fontWeight="400"
+                variant='h3'
+                margin='10px 0'
+                fontWeight='400'
                 fontSize={22}
-                id="3-proper-array-usage"
+                id='3-proper-array-usage'
               >
                 3. Proper Array Usage
               </Typography>
@@ -210,11 +215,11 @@ export default function JsonFormattingExcellence() {
               Avoid nesting unnecessary arrays, as it may lead to increased
               complexity and decreased performance.
               <Typography
-                variant="h3"
-                margin="10px 0"
-                fontWeight="400"
+                variant='h3'
+                margin='10px 0'
+                fontWeight='400'
                 fontSize={22}
-                id="4-formatting-dates-and-times"
+                id='4-formatting-dates-and-times'
               >
                 4. Formatting Dates and Times
               </Typography>
@@ -225,7 +230,7 @@ export default function JsonFormattingExcellence() {
               ensuring compatibility and ease of parsing. For example:
               <Box>
                 <pre>
-                  <code className="lang-json">
+                  <code className='lang-json'>
                     {`
 "event_date": "2023-05-10",
 "event_time":"14:30:00"
@@ -234,11 +239,11 @@ export default function JsonFormattingExcellence() {
                 </pre>
               </Box>
               <Typography
-                variant="h3"
-                margin="10px 0"
-                fontWeight="400"
+                variant='h3'
+                margin='10px 0'
+                fontWeight='400'
                 fontSize={22}
-                id="5-handling-nested-objects"
+                id='5-handling-nested-objects'
               >
                 5. Handling Nested Objects
               </Typography>
@@ -258,11 +263,11 @@ export default function JsonFormattingExcellence() {
               Maintain consistent formatting and indentation throughout the
               nested structure to ensure clarity and maintainability.
               <Typography
-                variant="h3"
-                margin="10px 0"
-                fontWeight="400"
+                variant='h3'
+                margin='10px 0'
+                fontWeight='400'
                 fontSize={22}
-                id="6-minimizing-data-redundancy"
+                id='6-minimizing-data-redundancy'
               >
                 6. Minimizing Data Redundancy
               </Typography>
@@ -280,11 +285,11 @@ export default function JsonFormattingExcellence() {
               Utilize object-oriented techniques such as inheritance or
               composition to organize and reuse common data elements.
               <Typography
-                variant="h3"
-                margin="10px 0"
-                fontWeight="400"
+                variant='h3'
+                margin='10px 0'
+                fontWeight='400'
                 fontSize={22}
-                id="7-optimizing-for-readability"
+                id='7-optimizing-for-readability'
               >
                 7. Optimizing for Readability
               </Typography>
@@ -306,11 +311,11 @@ export default function JsonFormattingExcellence() {
               Ensure your JSON code is well-documented, using clear and concise
               explanations to aid developers and improve understanding.
               <Typography
-                variant="h2"
-                margin="10px 0"
-                fontWeight="500"
+                variant='h2'
+                margin='10px 0'
+                fontWeight='500'
                 fontSize={30}
-                id="conclusion"
+                id='conclusion'
               >
                 Conclusion
               </Typography>

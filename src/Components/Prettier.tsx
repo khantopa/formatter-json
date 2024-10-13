@@ -1,6 +1,6 @@
-import { FC, useEffect, useState } from "react";
-import Editor from "@monaco-editor/react";
-import YAML from "json-to-pretty-yaml";
+import { FC, useEffect, useState } from 'react';
+import Editor from '@monaco-editor/react';
+import YAML from 'json-to-pretty-yaml';
 import {
   ButtonGroup,
   Button,
@@ -8,56 +8,57 @@ import {
   Select,
   Container,
   styled,
-} from "@mui/material";
+} from '@mui/material';
 
-import DownloadIcon from "@mui/icons-material/Download";
+import DownloadIcon from '@mui/icons-material/Download';
+import { validateAndParseJSON } from '@/utils/helper';
 
 const fileExtension = {
-  json: "json",
-  yaml: "yaml",
-  php: "php",
-  csv: "csv",
-  typescript: "ts",
+  json: 'json',
+  yaml: 'yaml',
+  php: 'php',
+  csv: 'csv',
+  typescript: 'ts',
 };
 
 const CustomizedEditor = styled(Editor)(() => ({
-  height: "700px",
-  border: "none",
-  "@media (max-width: 600px)": {
+  height: '700px',
+  border: 'none',
+  '@media (max-width: 600px)': {
     marginBottom: 20,
-    border: "1px solid #ccc",
+    border: '1px solid #ccc',
   },
 }));
 
 const EditorContainer = styled(Container)(() => ({
-  display: "flex",
-  border: "1px solid #ccc",
-  padding: "0 !important",
+  display: 'flex',
+  border: '1px solid #ccc',
+  padding: '0 !important',
   borderRadius: 5,
-  "@media (max-width: 600px)": {
-    flexDirection: "column",
+  '@media (max-width: 600px)': {
+    flexDirection: 'column',
     gap: 20,
-    border: "none",
+    border: 'none',
   },
 }));
 
-const EditorWrapper = styled("div")({
-  position: "relative",
-  width: "100%",
+const EditorWrapper = styled('div')({
+  position: 'relative',
+  width: '100%',
   padding: 0,
-  "&:last-of-type": {
-    borderLeft: "1px solid #ccc",
+  '&:last-of-type': {
+    borderLeft: '1px solid #ccc',
   },
-  "@media (max-width: 600px)": {
+  '@media (max-width: 600px)': {
     marginBottom: 20,
-    borderBottom: "1px solid #ccc",
+    borderBottom: '1px solid #ccc',
   },
 });
 
 const StyledButtonGroup = styled(ButtonGroup)({
-  "@media (max-width: 600px)": {
-    flexDirection: "column",
-    width: "100%",
+  '@media (max-width: 600px)': {
+    flexDirection: 'column',
+    width: '100%',
   },
 });
 
@@ -67,16 +68,16 @@ const Prettier: FC<any> = () => {
   );
   const [indent, setIndent] = useState(2);
   const [_hasError, setHasError] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState("");
+  const [currentLanguage, setCurrentLanguage] = useState('');
   const [types, setTypes] = useState<Record<string, any>>({});
-  const [formattedValue, setFormattedValue] = useState("");
+  const [formattedValue, setFormattedValue] = useState('');
 
   const handleChange = (value?: string) => {
     if (!value) {
-      setFormattedValue("");
+      setFormattedValue('');
       setHasError(false);
     }
-    setValue(value || "");
+    setValue(value || '');
   };
 
   const handleObjectType = (key: string, value: object) => {
@@ -93,11 +94,11 @@ const Prettier: FC<any> = () => {
   const handleArrayType = (key: string, value: any[]) => {
     const elementTypes = [];
     let isSameType = true;
-    let firstType = "";
+    let firstType = '';
     let type: string = typeof value[0];
     for (const element of value) {
       if (
-        typeof element === "object" &&
+        typeof element === 'object' &&
         element !== null &&
         !Array.isArray(element)
       ) {
@@ -114,21 +115,21 @@ const Prettier: FC<any> = () => {
     if (isSameType) {
       type = `${elementTypes[0]}[]`;
     } else {
-      type = `[${elementTypes.join(", ")}]`;
+      type = `[${elementTypes.join(', ')}]`;
     }
 
     return type;
   };
 
   useEffect(() => {
-    let formattedValue = "";
+    let formattedValue = '';
     for (const [key, obj] of Object.entries(types)) {
       formattedValue += `interface ${key} {\n`;
       for (const [key, value] of Object.entries(obj.value)) {
-        for (let i = 1; i <= indent; i++) formattedValue += " ";
+        for (let i = 1; i <= indent; i++) formattedValue += ' ';
         formattedValue += `${key}: ${value}\n`;
       }
-      formattedValue += "}\n\n";
+      formattedValue += '}\n\n';
     }
 
     setFormattedValue(formattedValue);
@@ -138,7 +139,7 @@ const Prettier: FC<any> = () => {
     const typeObject: Record<string, string> = {};
 
     for (const [key, value] of Object.entries(obj)) {
-      if (typeof value === "object" && value !== null) {
+      if (typeof value === 'object' && value !== null) {
         if (Array.isArray(value)) {
           typeObject[key] = `${handleArrayType(key, value)};`;
           continue;
@@ -154,12 +155,12 @@ const Prettier: FC<any> = () => {
   const generateType = () => {
     setHasError(false);
     setTypes([]);
-    setCurrentLanguage("typescript");
+    setCurrentLanguage('typescript');
     try {
-      const obj = JSON.parse(value);
+      const { obj } = validateAndParseJSON(value);
       setTypes((prev) => ({
         ...prev,
-        ["IRoot"]: { value: getTypeObject(obj) },
+        ['IRoot']: { value: getTypeObject(obj) },
       }));
     } catch (error: SyntaxError | any) {
       setHasError(true);
@@ -169,8 +170,9 @@ const Prettier: FC<any> = () => {
 
   const minify = () => {
     try {
-      setCurrentLanguage("json");
-      const obj = JSON.parse(value);
+      setCurrentLanguage('json');
+      const { obj } = validateAndParseJSON(value);
+
       setFormattedValue(JSON.stringify(obj));
     } catch (error: SyntaxError | any) {
       setHasError(true);
@@ -180,12 +182,13 @@ const Prettier: FC<any> = () => {
 
   const formatToCSV = () => {
     try {
-      setCurrentLanguage("csv");
-      const obj = JSON.parse(value);
+      setCurrentLanguage('csv');
+      const { obj } = validateAndParseJSON(value);
+
       const keys = Object.keys(obj);
       const values = Object.values(obj);
-      let formattedValue = keys.join(",") + "\n";
-      formattedValue += values.join(",");
+      let formattedValue = keys.join(',') + '\n';
+      formattedValue += values.join(',');
       setFormattedValue(formattedValue);
     } catch (error: SyntaxError | any) {
       setHasError(true);
@@ -195,8 +198,10 @@ const Prettier: FC<any> = () => {
 
   const format = () => {
     try {
-      setCurrentLanguage("json");
-      const obj = JSON.parse(value);
+      setCurrentLanguage('json');
+
+      const { obj } = validateAndParseJSON(value);
+
       setFormattedValue(JSON.stringify(obj, null, indent));
     } catch (error: SyntaxError | any) {
       setHasError(true);
@@ -210,8 +215,9 @@ const Prettier: FC<any> = () => {
 
   const formatToYAML = () => {
     try {
-      setCurrentLanguage("yaml");
-      const obj = JSON.parse(value);
+      setCurrentLanguage('yaml');
+      const { obj } = validateAndParseJSON(value);
+
       setFormattedValue(YAML.stringify(obj));
     } catch (error: SyntaxError | any) {
       setHasError(true);
@@ -221,13 +227,13 @@ const Prettier: FC<any> = () => {
 
   const formatToPHP = () => {
     try {
-      setCurrentLanguage("php");
-      const obj = JSON.parse(value);
+      setCurrentLanguage('php');
+      const { obj } = validateAndParseJSON(value);
 
       let formattedValue = JSON.stringify(obj, null, indent)
-        .replace(/{/g, "[")
-        .replace(/}/g, "]")
-        .replace(/:/g, " =>");
+        .replace(/{/g, '[')
+        .replace(/}/g, ']')
+        .replace(/:/g, ' =>');
       formattedValue = `<?php \n $arrayVar = ${formattedValue}`;
       setFormattedValue(formattedValue);
     } catch (error: SyntaxError | any) {
@@ -237,9 +243,9 @@ const Prettier: FC<any> = () => {
   };
 
   const downloadAsFile = () => {
-    const element = document.createElement("a");
+    const element = document.createElement('a');
     const file = new Blob([formattedValue], {
-      type: "text/plain;charset=utf-8",
+      type: 'text/plain;charset=utf-8',
     });
     element.href = URL.createObjectURL(file);
 
@@ -252,16 +258,16 @@ const Prettier: FC<any> = () => {
 
   useEffect(() => {
     switch (currentLanguage) {
-      case "yaml":
+      case 'yaml':
         formatToYAML();
         break;
-      case "php":
+      case 'php':
         formatToPHP();
         break;
-      case "csv":
+      case 'csv':
         formatToCSV();
         break;
-      case "typescript":
+      case 'typescript':
         generateType();
         break;
       default:
@@ -274,17 +280,17 @@ const Prettier: FC<any> = () => {
     <div>
       <div
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           padding: 10,
         }}
       >
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          labelId='demo-simple-select-label'
+          id='demo-simple-select'
           value={indent}
-          label="Indent"
+          label='Indent'
           style={{ height: 36, marginLeft: 8, marginTop: 24 }}
           onChange={(e) => setIndent(Number(e.target.value))}
         >
@@ -295,33 +301,33 @@ const Prettier: FC<any> = () => {
       </div>
       <div
         style={{
-          display: "flex",
-          justifyContent: "center",
+          display: 'flex',
+          justifyContent: 'center',
           padding: 10,
           marginBottom: 20,
         }}
       >
         <StyledButtonGroup
-          variant="contained"
-          color="warning"
-          aria-label="outlined primary button group"
+          variant='contained'
+          color='warning'
+          aria-label='outlined primary button group'
         >
-          <Button color="warning" onClick={format}>
+          <Button color='warning' onClick={format}>
             Prettier
           </Button>
-          <Button color="warning" onClick={formatToPHP}>
+          <Button color='warning' onClick={formatToPHP}>
             PHP
           </Button>
-          <Button color="warning" onClick={formatToYAML}>
+          <Button color='warning' onClick={formatToYAML}>
             YAML
           </Button>
-          <Button color="warning" onClick={generateType}>
+          <Button color='warning' onClick={generateType}>
             Typescript
           </Button>
-          <Button color="warning" onClick={minify}>
+          <Button color='warning' onClick={minify}>
             Minify
           </Button>
-          <Button color="warning" onClick={formatToCSV}>
+          <Button color='warning' onClick={formatToCSV}>
             CSV
           </Button>
         </StyledButtonGroup>
@@ -330,14 +336,14 @@ const Prettier: FC<any> = () => {
         <EditorContainer>
           <EditorWrapper>
             <CustomizedEditor
-              height="700px"
-              defaultLanguage="json"
+              height='700px'
+              defaultLanguage='json'
               defaultValue='{"name": "John", "age": 30, "city": "New York"}'
               onChange={handleChange}
               options={{
                 codeLens: false,
                 tabSize: indent,
-                renderLineHighlight: "none",
+                renderLineHighlight: 'none',
                 minimap: {
                   enabled: false,
                 },
@@ -351,19 +357,19 @@ const Prettier: FC<any> = () => {
 
           <EditorWrapper>
             <CustomizedEditor
-              height="700px"
-              defaultLanguage="typescript"
+              height='700px'
+              defaultLanguage='typescript'
               language={currentLanguage}
               value={formattedValue}
               defaultValue={`{\n "name": "John",\n  "age": 30,\n  "city": "New York"\n}`}
               options={{
-                renderLineHighlight: "none",
+                renderLineHighlight: 'none',
                 readOnly: true,
-                wordWrap: "on",
+                wordWrap: 'on',
                 // @ts-ignore
                 scrollBar: {
-                  vertical: "hidden",
-                  horizontal: "hidden",
+                  vertical: 'hidden',
+                  horizontal: 'hidden',
                 },
                 padding: { top: 8, bottom: 8 },
                 minimap: {
@@ -378,10 +384,10 @@ const Prettier: FC<any> = () => {
             />
 
             <Button
-              variant="outlined"
-              color="warning"
+              variant='outlined'
+              color='warning'
               style={{
-                position: "absolute",
+                position: 'absolute',
                 top: 0,
                 right: 0,
                 zIndex: 100,
@@ -392,14 +398,14 @@ const Prettier: FC<any> = () => {
             </Button>
 
             <Button
-              color="warning"
+              color='warning'
               style={{
-                position: "absolute",
+                position: 'absolute',
                 top: 0,
                 right: 0,
                 zIndex: 100,
-                transform: "translateY(-100%)",
-                textTransform: "lowercase",
+                transform: 'translateY(-100%)',
+                textTransform: 'lowercase',
               }}
               onClick={downloadAsFile}
             >
@@ -410,7 +416,7 @@ const Prettier: FC<any> = () => {
         </EditorContainer>
       </Container>
 
-      <div id="bottom-ad"></div>
+      <div id='bottom-ad'></div>
     </div>
   );
 };

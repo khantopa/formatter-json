@@ -22,9 +22,6 @@ const CustomizedEditor = styled(Editor)(() => ({
     marginBottom: 20,
     border: '1px solid #ccc',
   },
-  '.view-lines': {
-    padding: '0 0 0 8px',
-  },
 }));
 
 const Wrapper = styled('div')({
@@ -303,7 +300,6 @@ const Prettier: FC<any> = () => {
       minimap: {
         enabled: false,
       },
-      automaticLayout: true,
       contextmenu: false,
       renderLineHighlightOnlyWhenFocus: true,
       wordWrap: 'on',
@@ -319,7 +315,7 @@ const Prettier: FC<any> = () => {
         enabled: true,
       },
       showDeprecated: true,
-      peekWidgetDefaultFocus: 'editor',
+      // peekWidgetDefaultFocus: 'editor',
       guides: {
         indentation: false,
       },

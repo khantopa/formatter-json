@@ -29,14 +29,12 @@ export default function Home() {
         <div>
           <NavBar />
           <div className='top-ad'></div>
-
+          <Prettier />
+          <div className='ad-before-content'></div>
           <PageTitle
             title='Online JSON Converter and Formatter'
             description='Simplify your JSON data with our online converter and formatter. With just a few clicks, you can transform your JSON data into a more organized and easy-to-read format.'
           />
-
-          <Prettier />
-          <div className='ad-before-content'></div>
           <Content />
           <div className='footer-ad'></div>
           <Footer />

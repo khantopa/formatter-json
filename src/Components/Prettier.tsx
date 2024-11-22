@@ -1,5 +1,5 @@
-import { FC, useEffect, useState } from 'react';
-import Editor from '@monaco-editor/react';
+import { FC, useEffect, useMemo, useState } from 'react';
+import { Editor, EditorProps } from '@monaco-editor/react';
 import YAML from 'json-to-pretty-yaml';
 import {
   ButtonGroup,
@@ -30,7 +30,7 @@ const CustomizedEditor = styled(Editor)(() => ({
   },
 }));
 
-const EditorContainer = styled(Container)(() => ({
+const EditorContainer = styled('div')(() => ({
   display: 'flex',
   border: '1px solid #ccc',
   padding: '0 !important',
@@ -49,6 +49,9 @@ const EditorWrapper = styled('div')({
   '&:last-of-type': {
     borderLeft: '1px solid #ccc',
   },
+  '&:first-of-type': {
+    borderRight: '1px solid #ccc',
+  },
   '@media (max-width: 600px)': {
     marginBottom: 20,
     borderBottom: '1px solid #ccc',
@@ -62,15 +65,16 @@ const StyledButtonGroup = styled(ButtonGroup)({
   },
 });
 
+const initialState = `{\n "name": "John",\n  "age": 30,\n  "city": "New York"\n}`;
+
 const Prettier: FC<any> = () => {
-  const [value, setValue] = useState(
-    '{"name": "John", "age": 30, "city": "New York"}'
-  );
+  const [value, setValue] = useState(initialState);
   const [indent, setIndent] = useState(2);
   const [_hasError, setHasError] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState('');
   const [types, setTypes] = useState<Record<string, any>>({});
   const [formattedValue, setFormattedValue] = useState('');
+  const [theme, setTheme] = useState('light');
 
   const handleChange = (value?: string) => {
     if (!value) {
@@ -276,29 +280,48 @@ const Prettier: FC<any> = () => {
     }
   }, [indent]);
 
+  const editorOptions: EditorProps['options'] = useMemo(() => {
+    return {
+      fontSize: 16,
+      codeLens: false,
+      tabSize: indent,
+      renderLineHighlight: 'none',
+      minimap: {
+        enabled: false,
+      },
+      overviewRulerBorder: false,
+      contextmenu: true,
+      inlineSuggest: {
+        showToolbar: 'always',
+      },
+      scrollbar: {
+        alwaysConsumeMouseWheel: false,
+      },
+      renderLineHighlightOnlyWhenFocus: true,
+      wordWrap: 'on',
+      theme,
+      rulers: [0],
+      lineDecorationsWidth: 10,
+      overviewRulerLanes: 0,
+      cursorBlinking: 'expand',
+      cursorSmoothCaretAnimation: 'explicit',
+      padding: {
+        top: 10,
+        bottom: 10,
+      },
+      lightbulb: {
+        enabled: true,
+      },
+      showDeprecated: true,
+      peekWidgetDefaultFocus: 'editor',
+      guides: {
+        indentation: false,
+      },
+    };
+  }, [theme, indent]);
+
   return (
     <div>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: 10,
-        }}
-      >
-        <Select
-          labelId='demo-simple-select-label'
-          id='demo-simple-select'
-          value={indent}
-          label='Indent'
-          style={{ height: 36, marginLeft: 8, marginTop: 24 }}
-          onChange={(e) => setIndent(Number(e.target.value))}
-        >
-          <MenuItem value={2}>2 tab space </MenuItem>
-          <MenuItem value={3}>3 tab space</MenuItem>
-          <MenuItem value={5}>4 tab space</MenuItem>
-        </Select>
-      </div>
       <div
         style={{
           display: 'flex',
@@ -306,81 +329,84 @@ const Prettier: FC<any> = () => {
           padding: 10,
           marginBottom: 20,
         }}
-      >
-        <StyledButtonGroup
-          variant='contained'
-          color='warning'
-          aria-label='outlined primary button group'
-        >
-          <Button color='warning' onClick={format}>
-            Prettier
-          </Button>
-          <Button color='warning' onClick={formatToPHP}>
-            PHP
-          </Button>
-          <Button color='warning' onClick={formatToYAML}>
-            YAML
-          </Button>
-          <Button color='warning' onClick={generateType}>
-            Typescript
-          </Button>
-          <Button color='warning' onClick={minify}>
-            Minify
-          </Button>
-          <Button color='warning' onClick={formatToCSV}>
-            CSV
-          </Button>
-        </StyledButtonGroup>
-      </div>
-      <Container>
+      ></div>
+      <div style={{ padding: '20px' }}>
         <EditorContainer>
           <EditorWrapper>
             <CustomizedEditor
               height='700px'
+              width='100%'
               defaultLanguage='json'
-              defaultValue='{"name": "John", "age": 30, "city": "New York"}'
+              defaultValue={initialState}
               onChange={handleChange}
-              options={{
-                codeLens: false,
-                tabSize: indent,
-                renderLineHighlight: 'none',
-                minimap: {
-                  enabled: false,
-                },
-                overviewRulerBorder: false,
-                overviewRulerLanes: 0,
-                // @ts-ignore
-                contextMenu: false,
-              }}
+              options={editorOptions}
             />
           </EditorWrapper>
-
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: 10,
+            }}
+          >
+            <StyledButtonGroup
+              variant='contained'
+              color='warning'
+              aria-label='outlined primary button group'
+              orientation='vertical'
+            >
+              <Button color='warning' onClick={format}>
+                Prettier
+              </Button>
+              <Button color='warning' onClick={formatToPHP}>
+                PHP
+              </Button>
+              <Button color='warning' onClick={formatToYAML}>
+                YAML
+              </Button>
+              <Button color='warning' onClick={generateType}>
+                Typescript
+              </Button>
+              <Button color='warning' onClick={minify}>
+                Minify
+              </Button>
+              <Button color='warning' onClick={formatToCSV}>
+                CSV
+              </Button>
+            </StyledButtonGroup>
+            <Select
+              labelId='demo-simple-select-label'
+              id='demo-simple-select'
+              value={indent}
+              label='Indent'
+              style={{ height: 36, marginLeft: 8, marginTop: 24 }}
+              onChange={(e) => setIndent(Number(e.target.value))}
+            >
+              <MenuItem value={2}>2 tab space </MenuItem>
+              <MenuItem value={3}>3 tab space</MenuItem>
+              <MenuItem value={5}>4 tab space</MenuItem>
+            </Select>
+            <Select
+              labelId='demo-simple-select-label'
+              value={theme}
+              label='Indent'
+              style={{ height: 36, marginLeft: 8, marginTop: 24 }}
+              onChange={(e) => setTheme(e.target.value)}
+            >
+              <MenuItem value='vs-dark'>Dark</MenuItem>
+              <MenuItem value='light'>Light</MenuItem>
+            </Select>
+          </div>
           <EditorWrapper>
             <CustomizedEditor
               height='700px'
               defaultLanguage='typescript'
               language={currentLanguage}
               value={formattedValue}
-              defaultValue={`{\n "name": "John",\n  "age": 30,\n  "city": "New York"\n}`}
-              options={{
-                renderLineHighlight: 'none',
-                readOnly: true,
-                wordWrap: 'on',
-                // @ts-ignore
-                scrollBar: {
-                  vertical: 'hidden',
-                  horizontal: 'hidden',
-                },
-                padding: { top: 8, bottom: 8 },
-                minimap: {
-                  enabled: false,
-                },
-                codeLens: false,
-                overviewRulerBorder: false,
-                scrollBeyondLastLine: false,
-                renderLineHighlightOnlyWhenFocus: true,
-                overviewRulerLanes: 0,
-              }}
+              defaultValue={initialState}
+              options={editorOptions}
             />
 
             <Button
@@ -414,7 +440,7 @@ const Prettier: FC<any> = () => {
             </Button>
           </EditorWrapper>
         </EditorContainer>
-      </Container>
+      </div>
 
       <div id='bottom-ad'></div>
     </div>

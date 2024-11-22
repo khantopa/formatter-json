@@ -28,6 +28,9 @@ const CustomizedEditor = styled(Editor)(() => ({
     marginBottom: 20,
     border: '1px solid #ccc',
   },
+  '.view-lines': {
+    padding: '0 0 0 8px',
+  },
 }));
 
 const EditorContainer = styled('div')(() => ({
@@ -68,7 +71,7 @@ const StyledButtonGroup = styled(ButtonGroup)({
 const initialState = `{\n "name": "John",\n  "age": 30,\n  "city": "New York"\n}`;
 
 const Prettier: FC<any> = () => {
-  const [value, setValue] = useState(initialState);
+  const [value, setValue] = useState(initialState.replace(/\\n/g, '\n'));
   const [indent, setIndent] = useState(2);
   const [_hasError, setHasError] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState('');
@@ -285,24 +288,15 @@ const Prettier: FC<any> = () => {
       fontSize: 16,
       codeLens: false,
       tabSize: indent,
-      renderLineHighlight: 'none',
       minimap: {
         enabled: false,
       },
-      overviewRulerBorder: false,
-      contextmenu: true,
-      inlineSuggest: {
-        showToolbar: 'always',
-      },
-      scrollbar: {
-        alwaysConsumeMouseWheel: false,
-      },
+      automaticLayout: true,
+      contextmenu: false,
       renderLineHighlightOnlyWhenFocus: true,
       wordWrap: 'on',
       theme,
       rulers: [0],
-      lineDecorationsWidth: 10,
-      overviewRulerLanes: 0,
       cursorBlinking: 'expand',
       cursorSmoothCaretAnimation: 'explicit',
       padding: {
@@ -316,6 +310,10 @@ const Prettier: FC<any> = () => {
       peekWidgetDefaultFocus: 'editor',
       guides: {
         indentation: false,
+      },
+      scrollBeyondLastLine: false,
+      scrollbar: {
+        vertical: 'hidden',
       },
     };
   }, [theme, indent]);
@@ -351,6 +349,28 @@ const Prettier: FC<any> = () => {
               padding: 10,
             }}
           >
+            <Select
+              labelId='demo-simple-select-label'
+              id='demo-simple-select'
+              value={indent}
+              label='Indent'
+              style={{ height: 36, marginLeft: 8, marginBottom: 24 }}
+              onChange={(e) => setIndent(Number(e.target.value))}
+            >
+              <MenuItem value={2}>2 tab space </MenuItem>
+              <MenuItem value={3}>3 tab space</MenuItem>
+              <MenuItem value={5}>4 tab space</MenuItem>
+            </Select>
+            <Select
+              labelId='demo-simple-select-label'
+              value={theme}
+              label='Indent'
+              style={{ height: 36, marginLeft: 8, marginBottom: 24 }}
+              onChange={(e) => setTheme(e.target.value)}
+            >
+              <MenuItem value='vs-dark'>Dark</MenuItem>
+              <MenuItem value='light'>Light</MenuItem>
+            </Select>
             <StyledButtonGroup
               variant='contained'
               color='warning'
@@ -376,28 +396,6 @@ const Prettier: FC<any> = () => {
                 CSV
               </Button>
             </StyledButtonGroup>
-            <Select
-              labelId='demo-simple-select-label'
-              id='demo-simple-select'
-              value={indent}
-              label='Indent'
-              style={{ height: 36, marginLeft: 8, marginTop: 24 }}
-              onChange={(e) => setIndent(Number(e.target.value))}
-            >
-              <MenuItem value={2}>2 tab space </MenuItem>
-              <MenuItem value={3}>3 tab space</MenuItem>
-              <MenuItem value={5}>4 tab space</MenuItem>
-            </Select>
-            <Select
-              labelId='demo-simple-select-label'
-              value={theme}
-              label='Indent'
-              style={{ height: 36, marginLeft: 8, marginTop: 24 }}
-              onChange={(e) => setTheme(e.target.value)}
-            >
-              <MenuItem value='vs-dark'>Dark</MenuItem>
-              <MenuItem value='light'>Light</MenuItem>
-            </Select>
           </div>
           <EditorWrapper>
             <CustomizedEditor

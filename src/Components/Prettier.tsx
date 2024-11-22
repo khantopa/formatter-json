@@ -68,10 +68,10 @@ const StyledButtonGroup = styled(ButtonGroup)({
   },
 });
 
-const initialState = `{\n "name": "John",\n  "age": 30,\n  "city": "New York"\n}`;
-
 const Prettier: FC<any> = () => {
-  const [value, setValue] = useState(initialState);
+  const [value, setValue] = useState(
+    '{"name": "John","age": 30,"city": "New York"}'
+  );
   const [indent, setIndent] = useState(2);
   const [_hasError, setHasError] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState('');
@@ -418,7 +418,6 @@ const Prettier: FC<any> = () => {
           <EditorWrapper>
             <CustomizedEditor
               height='700px'
-              defaultLanguage='typescript'
               language={currentLanguage}
               value={formattedValue}
               options={editorOptions}

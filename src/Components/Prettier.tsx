@@ -1,17 +1,11 @@
 import { FC, useEffect, useMemo, useState } from 'react';
 import { Editor, EditorProps } from '@monaco-editor/react';
 import YAML from 'json-to-pretty-yaml';
-import {
-  ButtonGroup,
-  Button,
-  MenuItem,
-  Select,
-  Container,
-  styled,
-} from '@mui/material';
+import { ButtonGroup, Button, MenuItem, Select, styled } from '@mui/material';
 
 import DownloadIcon from '@mui/icons-material/Download';
 import { validateAndParseJSON } from '@/utils/helper';
+import Toolbar from '@components/Toolbar';
 
 const fileExtension = {
   json: 'json',
@@ -32,6 +26,12 @@ const CustomizedEditor = styled(Editor)(() => ({
     padding: '0 0 0 8px',
   },
 }));
+
+const Wrapper = styled('div')({
+  position: 'relative',
+  width: '100%',
+  padding: 0,
+});
 
 const EditorContainer = styled('div')(() => ({
   display: 'flex',
@@ -71,13 +71,14 @@ const StyledButtonGroup = styled(ButtonGroup)({
 const initialState = `{\n "name": "John",\n  "age": 30,\n  "city": "New York"\n}`;
 
 const Prettier: FC<any> = () => {
-  const [value, setValue] = useState(initialState.replace(/\\n/g, '\n'));
+  const [value, setValue] = useState(initialState);
   const [indent, setIndent] = useState(2);
   const [_hasError, setHasError] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState('');
   const [types, setTypes] = useState<Record<string, any>>({});
   const [formattedValue, setFormattedValue] = useState('');
-  const [theme, setTheme] = useState('light');
+
+  const [theme, setTheme] = useState('vs-dark');
 
   const handleChange = (value?: string) => {
     if (!value) {
@@ -175,15 +176,21 @@ const Prettier: FC<any> = () => {
     }
   };
 
-  const minify = () => {
+  const minify = (isEditor = false) => {
+    let updaterFunction = setFormattedValue;
+
     try {
-      setCurrentLanguage('json');
+      if (isEditor) {
+        updaterFunction = setValue;
+      } else {
+        setCurrentLanguage('json');
+      }
       const { obj } = validateAndParseJSON(value);
 
-      setFormattedValue(JSON.stringify(obj));
+      updaterFunction(JSON.stringify(obj));
     } catch (error: SyntaxError | any) {
       setHasError(true);
-      setFormattedValue(error.message);
+      updaterFunction(error.message);
     }
   };
 
@@ -203,16 +210,21 @@ const Prettier: FC<any> = () => {
     }
   };
 
-  const format = () => {
+  const format = (isEditor = false) => {
+    let updaterFunction = setFormattedValue;
     try {
-      setCurrentLanguage('json');
+      if (isEditor) {
+        updaterFunction = setValue;
+      } else {
+        setCurrentLanguage('json');
+      }
 
       const { obj } = validateAndParseJSON(value);
 
-      setFormattedValue(JSON.stringify(obj, null, indent));
+      updaterFunction(JSON.stringify(obj, null, indent));
     } catch (error: SyntaxError | any) {
       setHasError(true);
-      setFormattedValue(error.message);
+      updaterFunction(error.message);
     }
   };
 
@@ -335,10 +347,16 @@ const Prettier: FC<any> = () => {
               height='700px'
               width='100%'
               defaultLanguage='json'
-              defaultValue={initialState}
+              value={value}
               onChange={handleChange}
               options={editorOptions}
+              onMount={(editor) => {
+                editor.updateOptions({
+                  theme: 'vs-dark',
+                });
+              }}
             />
+            <Toolbar minify={minify} prettify={format} />
           </EditorWrapper>
           <div
             style={{
@@ -373,26 +391,26 @@ const Prettier: FC<any> = () => {
             </Select>
             <StyledButtonGroup
               variant='contained'
-              color='warning'
+              color='primary'
               aria-label='outlined primary button group'
               orientation='vertical'
             >
-              <Button color='warning' onClick={format}>
+              <Button color='primary' onClick={() => format()}>
                 Prettier
               </Button>
-              <Button color='warning' onClick={formatToPHP}>
+              <Button color='primary' onClick={formatToPHP}>
                 PHP
               </Button>
-              <Button color='warning' onClick={formatToYAML}>
+              <Button color='primary' onClick={formatToYAML}>
                 YAML
               </Button>
-              <Button color='warning' onClick={generateType}>
+              <Button color='primary' onClick={generateType}>
                 Typescript
               </Button>
-              <Button color='warning' onClick={minify}>
+              <Button color='primary' onClick={() => minify()}>
                 Minify
               </Button>
-              <Button color='warning' onClick={formatToCSV}>
+              <Button color='primary' onClick={formatToCSV}>
                 CSV
               </Button>
             </StyledButtonGroup>
@@ -403,39 +421,14 @@ const Prettier: FC<any> = () => {
               defaultLanguage='typescript'
               language={currentLanguage}
               value={formattedValue}
-              defaultValue={initialState}
               options={editorOptions}
+              onMount={(editor) => {
+                editor.updateOptions({
+                  theme: 'vs-dark',
+                });
+              }}
             />
-
-            <Button
-              variant='outlined'
-              color='warning'
-              style={{
-                position: 'absolute',
-                top: 0,
-                right: 0,
-                zIndex: 100,
-              }}
-              onClick={copyToClipboard}
-            >
-              Copy
-            </Button>
-
-            <Button
-              color='warning'
-              style={{
-                position: 'absolute',
-                top: 0,
-                right: 0,
-                zIndex: 100,
-                transform: 'translateY(-100%)',
-                textTransform: 'lowercase',
-              }}
-              onClick={downloadAsFile}
-            >
-              <DownloadIcon />.
-              {fileExtension[currentLanguage as keyof typeof fileExtension]}
-            </Button>
+            <Toolbar download={downloadAsFile} copy={copyToClipboard} />
           </EditorWrapper>
         </EditorContainer>
       </div>
